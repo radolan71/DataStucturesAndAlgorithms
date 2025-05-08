@@ -35,13 +35,24 @@ function mergeSort(arr, compare = (a, b) => a < b) {
   return mergeSortInner(arr);
 }
 
+function verifySorted(array, compare = (a, b) => a < b) {
+  if (array.length <= 1) {
+    return true;
+  }
+  // console.log(array.slice(1));
+  return compare(array[0], array[1]) && verifySorted(array.slice(1), compare);
+}
+
 let arr = [5, 8, 9, 12, -8, 31, 2];
 // Sort Array elements in increasing order
 arr = mergeSort(arr);
 console.log(arr);
+if (!verifySorted(arr)) throw new Error("not sorted");
 // Sort Array elements in decreasing order
 arr = mergeSort(arr, (a, b) => a > b);
 console.log(arr);
+if (!verifySorted(arr, (a, b) => a > b)) throw new Error("not sorted");
+
 arr = [
   {
     name: "Harry",
@@ -57,8 +68,12 @@ arr = [
   },
 ];
 // Sort Array elements in increasing order alphabetically by names
-arr = mergeSort(arr, (a, b) => a.name < b.name);
+let compare = (a, b) => a.name < b.name;
+arr = mergeSort(arr, compare);
 console.log(arr);
+if (!verifySorted(arr, compare)) throw new Error("not sorted");
 // Sort Array elements in decreasing order of ages
-arr = mergeSort(arr, (a, b) => a.age < b.age);
+compare = (a, b) => a.age < b.age;
+arr = mergeSort(arr, compare);
 console.log(arr);
+if (!verifySorted(arr, compare)) throw new Error("not sorted");
