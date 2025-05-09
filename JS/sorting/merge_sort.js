@@ -1,4 +1,17 @@
+/**
+ * O(n log n) time
+ * O(n) the splitted arrays lenght at any point during the algorith do not go above n
+ * @param {*} arr
+ * @param {*} compare
+ * @returns
+ */
 function mergeSort(arr, compare = (a, b) => a < b) {
+  /**
+   * O(n log n)  = n times merge
+   * @param {*} left
+   * @param {*} right
+   * @returns
+   */
   function merge(left, right) {
     let mergedArr = [];
     let i = 0;
@@ -22,6 +35,11 @@ function mergeSort(arr, compare = (a, b) => a < b) {
     return mergedArr.concat(left.slice(i)).concat(right.slice(j));
   }
 
+  /**
+   * O(log n) time
+   * @param {*} arr
+   * @returns
+   */
   function mergeSortInner(arr) {
     if (arr.length < 2) {
       return arr;
@@ -42,6 +60,10 @@ function verifySorted(array, compare = (a, b) => a < b) {
   // console.log(array.slice(1));
   return compare(array[0], array[1]) && verifySorted(array.slice(1), compare);
 }
+
+/**
+ * EXAMPLES
+ */
 
 let arr = [5, 8, 9, 12, -8, 31, 2];
 // Sort Array elements in increasing order
