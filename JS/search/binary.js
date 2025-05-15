@@ -1,6 +1,8 @@
 /**
  * JavaScript program to implement recursive Binary Search
  *
+ * Works with sorted arrays only
+ *
  * A recursive binary search function. It returns
  * location of x in given array arr[l..r] is present,
  * otherwise -1
