@@ -18,6 +18,14 @@ function swap(arr, i, j) {
   arr[j] = temp;
 }
 
+/**
+ * O(n log n) time best
+ * O(n^2) time worst
+ * @param {*} arr
+ * @param {*} low
+ * @param {*} high
+ * @param {*} compare
+ */
 function quickSort(arr, low, high, compare = (l, r) => l < r) {
   if (high - low > 0) {
     // Partition the array
@@ -28,7 +36,35 @@ function quickSort(arr, low, high, compare = (l, r) => l < r) {
     quickSort(arr, mid + 1, high, compare);
   }
 }
+
+/**
+ * Less efficient space complexity quicksort
+ *
+ * @param {*} arr
+ * @returns
+ */
+function quickSortNoSwap(arr) {
+  if (arr.length < 2) {
+    return arr;
+  }
+
+  let pivot = arr[0];
+  let left = [];
+  let right = [];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] <= pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  // console.log("left ", left, "right ", right);
+  return [...quickSortNoSwap(left), pivot, ...quickSortNoSwap(right)];
+}
+
 //  You can test this using:
 let arr = [5, 1, 10, 8, 9, 3, 2, 45, -6];
+console.log(quickSortNoSwap(arr));
+
 quickSort(arr, 0, arr.length, (l, r) => l < r);
 console.log(arr);
