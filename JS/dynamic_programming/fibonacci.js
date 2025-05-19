@@ -4,8 +4,20 @@ const fib = (n, memo = {}) => {
   memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
   return memo[n];
 };
-console.log(fib(0)); // -> 0
-console.log(fib(1)); // -> 1
-console.log(fib(5)); // -> 5
-console.log(fib(35)); // -> 9227465
-console.log(fib(46)); // -> 1836311903
+
+const fibTab = (n) => {
+  const table = Array(n + 1).fill(0);
+  table[1] = 1;
+  for (let i = 0; i < n; i++) {
+    table[i + 1] += table[i];
+    table[i + 2] += table[i];
+  }
+
+  return table[n];
+};
+
+console.log(fibTab(0)); // -> 0
+console.log(fibTab(1)); // -> 1
+console.log(fibTab(5)); // -> 5
+console.log(fibTab(35)); // -> 9227465
+console.log(fibTab(46)); // -> 1836311903

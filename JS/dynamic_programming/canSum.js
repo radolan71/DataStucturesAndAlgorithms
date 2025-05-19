@@ -57,6 +57,22 @@ function canSumMemo(targetSum, numbers, memo = {}) {
   return false;
 }
 
+function canSumTab(targetSum, numbers) {
+  const table = new Array(targetSum + 1).fill(false);
+  table[0] = true;
+  for (let i = 0; i <= targetSum; i++) {
+    if (table[i] === true) {
+      for (const n of numbers) {
+        if (typeof table[i + n] !== "undefined") {
+          table[i + n] = true;
+        }
+      }
+    }
+  }
+
+  return table[targetSum];
+}
+
 console.log(canSum(7, [2, 3])); // true
 console.log(canSum(7, [5, 3, 4, 7])); // true
 console.log(canSum(7, [2, 4])); // false
@@ -65,3 +81,8 @@ console.log(canSumMemo(7, [2, 3])); // true
 console.log(canSumMemo(7, [5, 3, 4, 7])); // true
 console.log(canSumMemo(7, [2, 4])); // false
 console.log(canSumMemo(300, [7, 14])); // false
+
+console.log(canSumTab(7, [2, 3])); // true
+console.log(canSumTab(7, [5, 3, 4, 7])); // true
+console.log(canSumTab(7, [2, 4])); // false
+console.log(canSumTab(300, [7, 14])); // false
