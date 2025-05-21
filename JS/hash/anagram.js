@@ -12,14 +12,6 @@ const anagrams = (s1, s2) => {
   let s1asarray = s1.split("");
   let matches = 0;
   for (let i = 0; i < s2.length; i++) {
-    // console.log(
-    //   "checking ",
-    //   s2[i],
-    //   " in ",
-    //   s1asarray,
-    //   " result ",
-    //   s1asarray.indexOf(s2[i])
-    // );
     if (s1asarray.indexOf(s2[i]) >= 0) {
       matches++;
     }
